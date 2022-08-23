@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
@@ -19,6 +20,28 @@ namespace RacingDual.Controllers
         {
             _ps = ps;
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Post>>> GetAll()
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<Post> post = _ps.GetAll();
+                return Ok(post);
+            }
+            catch (System.Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+
+
+
+
+
 
         [HttpPost]
         [Authorize]
