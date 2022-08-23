@@ -32,6 +32,24 @@ namespace RacingDual.Repositories
             }).ToList();
         }
 
+        internal Post GetById(int id)
+        {
+            string sql = @"
+            SELECT
+            p.*,
+            a.*
+            FROM posts p 
+            JOIN accounts a ON p.creatorId = a.id
+            WHERE p.id = @id";
+            return _db.Query<Post, Profile, Post>(sql, (post, profile) =>
+            {
+                post.Creator = profile;
+                return post;
+            }, new { id }).FirstOrDefault();
+        }
+
+
+
         internal Post create(Post postData)
         {
             string sql = @"
@@ -44,6 +62,15 @@ namespace RacingDual.Repositories
             postData.Id = id;
             return postData;
 
+        }
+
+
+        internal void Delete(int id)
+        {
+            string sql = @"
+          DELETE FROM posts
+           WHERE id = @id";
+            _db.Execute(sql, new { id });
         }
 
 

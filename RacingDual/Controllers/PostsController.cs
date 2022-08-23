@@ -37,10 +37,22 @@ namespace RacingDual.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Post>> GetById(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                Post post = _ps.GetById(id);
+                return Ok(post);
 
+            }
+            catch (System.Exception e)
+            {
 
-
-
+                return BadRequest(e.Message);
+            }
+        }
 
 
         [HttpPost]
@@ -62,6 +74,27 @@ namespace RacingDual.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Post>> Delete(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                Post post = _ps.Delete(id, userInfo.Id);
+                return Ok("Deleted");
+            }
+            catch (System.Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+
+
+
 
     }
 }
