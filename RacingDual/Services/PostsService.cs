@@ -45,5 +45,25 @@ namespace RacingDual.Services
             _repo.Delete(id);
             return post;
         }
+
+        internal Post Edit(int id, string userId, Post postData)
+        {
+            Post original = GetById(id);
+            if (original.CreatorId != userId)
+            {
+                throw new Exception("Forbidden");
+            }
+            original.Description = postData.Description ?? original.Description;
+            _repo.Edit(original, id);
+            return original;
+        }
+
+        // internal Post like(int id, string userId, Post postData)
+        // {
+        //     Post post = GetById(id);
+        //     post.Likes ++;
+        //     _repo.Like(post);
+        //     return post;
+        // }
     }
 }
