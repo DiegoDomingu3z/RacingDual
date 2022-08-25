@@ -58,7 +58,7 @@ namespace RacingDual.Services
             return original;
         }
 
-        // internal Post like(int id, string userId, Post postData)
+        // private Post like(int id, string userId, Post postData)
         // {
         //     Post post = GetById(id);
         //     post.Likes ++;

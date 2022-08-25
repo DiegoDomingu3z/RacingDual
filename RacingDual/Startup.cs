@@ -38,6 +38,9 @@ namespace RacingDual
 
             services.AddTransient<PostsRepository>();
             services.AddTransient<PostsService>();
+
+            services.AddTransient<PostLikesRepository>();
+            services.AddTransient<PostLikesService>();
         }
 
         private void ConfigureCors(IServiceCollection services)

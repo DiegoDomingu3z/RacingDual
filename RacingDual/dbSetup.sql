@@ -22,3 +22,13 @@ CREATE TABLE
         creatorId VARCHAR(255) NOT NULL,
         FOREIGN KEY(creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
+
+CREATE TABLE
+    IF NOT EXISTS postLikes(
+        id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        accountId VARCHAR(255) NOT NULL,
+        postId int NOT NULL,
+        FOREIGN KEY(accountId) REFERENCES accounts(id) ON DELETE CASCADE,
+        FOREIGN KEY(postId) REFERENCES posts(id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
