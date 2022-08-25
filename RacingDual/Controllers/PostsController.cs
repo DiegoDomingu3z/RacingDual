@@ -76,6 +76,42 @@ namespace RacingDual.Controllers
         }
 
 
+
+        [HttpPut("{id}")]
+        [Authorize]
+        public async Task<ActionResult<Post>> Edit(int id, [FromBody] Post postData)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                Post post = _ps.Edit(id, userInfo.Id, postData);
+                return Ok(post);
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        // [HttpPut("{id}/likes")]
+        // [Authorize]
+
+        // public async Task<ActionResult<Post>> Like(int id, [FromBody] Post postData)
+        // {
+        //     try
+        //     {
+        //         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        //         Post post = _ps.like(id, userInfo.Id, postData);
+        //         return Ok(post);
+        //     }
+        //     catch (System.Exception e)
+        //     {
+        //         return BadRequest(e.Message);
+        //     }
+        // }
+
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<Post>> Delete(int id)
         {

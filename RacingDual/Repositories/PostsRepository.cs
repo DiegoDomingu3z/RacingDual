@@ -64,6 +64,15 @@ namespace RacingDual.Repositories
 
         }
 
+        internal Post Edit(Post original, int id)
+        {
+            string sql = @"
+            UPDATE posts
+            Set
+            description = @description";
+            _db.Execute(sql, original);
+            return original;
+        }
 
         internal void Delete(int id)
         {
