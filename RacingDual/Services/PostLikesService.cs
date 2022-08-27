@@ -16,11 +16,24 @@ namespace RacingDual.Services
             _ps = ps;
         }
 
+
+
+        internal Post GetById(int id)
+        {
+            return _repo.GetById(id);
+        }
         internal PostLike PostLike(string userId, PostLike postLikeData, int postId)
         {
             Post found = _ps.GetById(postId);
             _repo.like(found, postId);
             return _repo.PostLike(postLikeData);
         }
+
+        internal PostLike DeleteLike(int id1, string id2)
+        {
+            Post found =
+        }
+
+
     }
 }

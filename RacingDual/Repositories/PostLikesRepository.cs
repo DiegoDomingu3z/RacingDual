@@ -1,4 +1,5 @@
 using System.Data;
+using System.Linq;
 using Dapper;
 using RacingDual.Models;
 
@@ -14,6 +15,23 @@ namespace RacingDual.Repositories
             _db = db;
         }
 
+
+        internal Post GetById(int id)
+        {
+            string sql = @"
+            SELECT
+            pl.*,
+            a.*
+            FROM postLikes
+            JOIN accounts a ON pl.creatorId = a.id
+            where pl.id = @id";
+            return _db.Query<PostLike, Profile, PostLike>(sql, (like, profile) =>
+            {
+                like.Creator = profile;
+                return like;
+            }, new { id }).FirstOrDefault();
+        }
+
         internal PostLike PostLike(PostLike postLikeData)
         {
             string sql = @"
@@ -27,6 +45,8 @@ namespace RacingDual.Repositories
             return postLikeData;
 
         }
+
+
 
         internal void like(Post found, int id)
         {
