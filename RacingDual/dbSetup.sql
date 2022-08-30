@@ -32,3 +32,31 @@ CREATE TABLE
         FOREIGN KEY(accountId) REFERENCES accounts(id) ON DELETE CASCADE,
         FOREIGN KEY(postId) REFERENCES posts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
+
+CREATE TABLE
+    IF NOT EXISTS simRigs(
+        id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+        simRIg ENUM('GT', 'F1', 'Flight', 'Cruiser') NOT NULL,
+        console VARCHAR(255) NOT NULL,
+        Chasis VARCHAR(255),
+        monitorStand VARCHAR(255),
+        wheelBase VARCHAR(255) NOT NULL,
+        steeringWheel VARCHAR(255) NOT NULL,
+        pedal VARCHAR(255) NOT NULL,
+        software TEXT,
+        extras TEXT,
+        creatorId VARCHAR(255) NOT NULL,
+        FOREIGN KEY(creatorId) REFERENCES accounts(id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
+
+CREATE TABLE
+    IF NOT EXISTS simRigLikes(
+        id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        accountId VARCHAR(255) NOT NULL,
+        simRigId int NOT NULL,
+        FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE,
+        FOREIGN KEY (simRigId) REFERENCES simRigs(id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
