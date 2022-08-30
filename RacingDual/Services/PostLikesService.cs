@@ -1,3 +1,4 @@
+using System;
 using RacingDual.Models;
 using RacingDual.Repositories;
 
@@ -18,9 +19,14 @@ namespace RacingDual.Services
 
 
 
-        internal Post GetById(int id)
+        internal PostLike GetById(int id)
         {
-            return _repo.GetById(id);
+            PostLike like = _repo.GetById(id);
+            if (like == null)
+            {
+                throw new Exception("Invalid Id");
+            }
+            return like;
         }
         internal PostLike PostLike(string userId, PostLike postLikeData, int postId)
         {
@@ -29,11 +35,19 @@ namespace RacingDual.Services
             return _repo.PostLike(postLikeData);
         }
 
-        internal PostLike DeleteLike(int id1, string id2)
+        internal PostLike DeleteLike(int id, string userId)
         {
-            Post found =
+            PostLike found = GetById(id);
+            if (found == null)
+            {
+                throw new Exception("Invalid Id");
+            }
+            if (found.AccountId != userId)
+            {
+                throw new Exception("Forbidden");
+            }
+            _repo.DeleteLike(id);
+            return found;
         }
-
-
     }
 }

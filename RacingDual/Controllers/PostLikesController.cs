@@ -23,13 +23,18 @@ namespace RacingDual.Controllers
 
 
 
+
+
+
+
+
         [HttpGet("{id}")]
         public async Task<ActionResult<PostLike>> GetById(int id)
         {
             try
             {
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-                Post post = _pls.GetById(id);
+                PostLike post = _pls.GetById(id);
                 return Ok(post);
 
             }

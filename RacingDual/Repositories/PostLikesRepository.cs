@@ -16,15 +16,15 @@ namespace RacingDual.Repositories
         }
 
 
-        internal Post GetById(int id)
+        internal PostLike GetById(int id)
         {
             string sql = @"
             SELECT
             pl.*,
             a.*
-            FROM postLikes
-            JOIN accounts a ON pl.creatorId = a.id
-            where pl.id = @id";
+            FROM postLikes pl
+            JOIN accounts a ON pl.accountId = a.id
+            WHERE pl.id = @id";
             return _db.Query<PostLike, Profile, PostLike>(sql, (like, profile) =>
             {
                 like.Creator = profile;
@@ -58,6 +58,14 @@ namespace RacingDual.Repositories
             posts.id = @id";
             _db.Execute(sql, found);
 
+        }
+
+        internal void DeleteLike(int id)
+        {
+            string sql = @"
+            DELETE from postLikes
+            WHERE id = @id";
+            _db.Execute(sql, new { id });
         }
     }
 }
