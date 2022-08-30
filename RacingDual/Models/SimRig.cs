@@ -14,11 +14,15 @@ namespace RacingDual.Models
 
         public DateTime UpdatedAt { get; set; }
 
+        public SimRigType SimType { get; set; }
+
         public string Console { get; set; }
 
         public string Chassis { get; set; }
 
         public string MonitorStand { get; set; }
+
+        public string SteeringWheel { get; set; }
 
         public string Pedal { get; set; }
 

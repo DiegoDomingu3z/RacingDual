@@ -38,7 +38,7 @@ CREATE TABLE
         id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
-        simRig ENUM('GT', 'F1', 'Flight', 'Cruiser') NOT NULL,
+        simType ENUM('GT', 'F1', 'Flight', 'Cruiser') NOT NULL,
         console VARCHAR(255) NOT NULL,
         Chassis VARCHAR(255),
         monitorStand VARCHAR(255),
