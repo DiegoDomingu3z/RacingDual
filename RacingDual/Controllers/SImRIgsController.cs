@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
@@ -18,6 +19,40 @@ namespace RacingDual.Controllers
         public SimRigsController(SimRigsService srs)
         {
             _srs = srs;
+        }
+
+
+        [HttpGet]
+
+        public async Task<ActionResult<List<SimRig>>> GetAllRIgs()
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<SimRig> rigs = _srs.GetAllRigs();
+                return Ok(rigs);
+            }
+            catch (System.Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<SimRig>> GetById(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                SimRig rig = _srs.GetById(id);
+                return Ok(rig);
+            }
+            catch (System.Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPost]

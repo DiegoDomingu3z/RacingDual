@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using RacingDual.Models;
 using RacingDual.Repositories;
 
@@ -13,10 +15,25 @@ namespace RacingDual.Services
             _repo = repo;
         }
 
+        internal List<SimRig> GetAllRigs()
+        {
+            return _repo.GetAllRigs();
+        }
+
         internal SimRig CreateRig(SimRig simRigData)
         {
             return _repo.createRig(simRigData);
+
         }
 
+        internal SimRig GetById(int id)
+        {
+            SimRig found = _repo.GetById(id);
+            if (found == null)
+            {
+                throw new Exception("Invalid Id");
+            }
+            return found;
+        }
     }
 }

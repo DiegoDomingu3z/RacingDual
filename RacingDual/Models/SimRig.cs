@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RacingDual.Models
 {
@@ -13,8 +14,8 @@ namespace RacingDual.Models
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
-
-        public SimRigType SimType { get; set; }
+        [Required]
+        public string SimType { get; set; }
 
         public string Console { get; set; }
 
@@ -29,5 +30,7 @@ namespace RacingDual.Models
         public string Software { get; set; }
 
         public string Extras { get; set; }
+
+        public string WheelBase { get; set; }
     }
 }
