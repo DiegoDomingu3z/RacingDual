@@ -35,5 +35,16 @@ namespace RacingDual.Services
             }
             return found;
         }
+
+        internal SimRig DeleteRig(int id, string userId)
+        {
+            SimRig rig = GetById(id);
+            if (rig.CreatorId != userId)
+            {
+                throw new Exception("Forbidden");
+            }
+            _repo.DeleteRig(id);
+            return rig;
+        }
     }
 }

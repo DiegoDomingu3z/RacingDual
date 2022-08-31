@@ -75,5 +75,22 @@ namespace RacingDual.Controllers
             }
         }
 
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<ActionResult<SimRig>> DeleteRig(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                SimRig deletedRig = _srs.DeleteRig(id, userInfo.Id);
+                return Ok("deleted Rig");
+            }
+            catch (System.Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
     }
 }

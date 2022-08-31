@@ -48,6 +48,8 @@ namespace RacingDual.Repositories
             }, new { id }).FirstOrDefault();
         }
 
+
+
         internal SimRig createRig(SimRig simRigData)
         {
             string sql = @"
@@ -60,6 +62,14 @@ namespace RacingDual.Repositories
             simRigData.Id = id;
             return simRigData;
 
+        }
+
+        internal void DeleteRig(int id)
+        {
+            string sql = @"
+           DELETE from simRigs
+           WHERE id = @id";
+            _db.Execute(sql, new { id });
         }
 
 
