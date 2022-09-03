@@ -32,9 +32,16 @@ namespace RacingDual.Services
 
         }
 
-        internal SimRigLike DeleteLike(int id, object userId)
+        internal SimRigLike DeleteLike(int id, string userId)
         {
-            throw new NotImplementedException();
+            SimRigLike deletedLike = GetById(id);
+            if (deletedLike.accountId != userId)
+            {
+                throw new Exception("Forbidden");
+            }
+            _repo.DeleteLike(id);
+            return deletedLike;
+
         }
 
 

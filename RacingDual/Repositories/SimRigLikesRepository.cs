@@ -44,5 +44,13 @@ namespace RacingDual.Repositories
                 return simRigLike;
             }, new { id }).FirstOrDefault();
         }
+
+        internal void DeleteLike(int id)
+        {
+            string sql = @"
+            DELETE from simRigLikes
+            WHERE id = @id";
+            _db.Execute(sql, new { id });
+        }
     }
 }
