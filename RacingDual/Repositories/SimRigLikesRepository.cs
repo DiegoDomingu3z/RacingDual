@@ -1,4 +1,5 @@
 using System.Data;
+using System.Linq;
 using Dapper;
 using RacingDual.Models;
 
@@ -26,6 +27,22 @@ namespace RacingDual.Repositories
             likeData.Id = id;
             return likeData;
 
+        }
+
+        internal SimRigLike GetById(int id)
+        {
+            string sql = @"
+            SELECT 
+            srl.*,
+            a.*
+            FROM simRigLikes srl
+            JOIN accounts a ON srl.accountId = a.id
+            WHERE srl.id = @id";
+            return _db.Query<SimRigLike, Profile, SimRigLike>(sql, (simRigLike, profile) =>
+            {
+                simRigLike.Creator = profile;
+                return simRigLike;
+            }, new { id }).FirstOrDefault();
         }
     }
 }

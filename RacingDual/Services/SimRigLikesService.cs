@@ -1,3 +1,4 @@
+using System;
 using RacingDual.Models;
 using RacingDual.Repositories;
 
@@ -18,6 +19,24 @@ namespace RacingDual.Services
         {
             return _repo.Like(likeData);
         }
+
+        internal SimRigLike GetById(int id)
+        {
+            SimRigLike like = _repo.GetById(id);
+            if (like == null)
+            {
+                throw new Exception("Invalid Id");
+            }
+            return like;
+
+
+        }
+
+        internal SimRigLike DeleteLike(int id, object userId)
+        {
+            throw new NotImplementedException();
+        }
+
 
     }
 }

@@ -40,5 +40,39 @@ namespace RacingDual.Controllers
             }
 
         }
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<SimRigLike>> GetById(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                SimRigLike rigLike = _srl.GetById(id);
+                return Ok(rigLike);
+
+            }
+            catch (System.Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<SimRigLike>> DeleteLike(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                SimRigLike deletedLike = _srl.DeleteLike(id, userInfo.Id);
+                return Ok("deleted like");
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
