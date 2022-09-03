@@ -16,7 +16,7 @@ namespace RacingDual.Services
 
         internal SimRigLike Like(int id, SimRigLike likeData)
         {
-            return _repo.Like(id, likeData);
+            return _repo.Like(likeData);
         }
 
     }

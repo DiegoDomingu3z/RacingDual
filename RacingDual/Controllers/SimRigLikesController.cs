@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RacingDual.Models;
 using RacingDual.Services;
@@ -9,6 +10,7 @@ namespace RacingDual.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class SimRigLikesController : ControllerBase
     {
         private readonly SimRigLikesService _srl;
