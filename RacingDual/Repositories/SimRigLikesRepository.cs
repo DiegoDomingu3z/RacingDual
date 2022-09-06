@@ -51,14 +51,16 @@ namespace RacingDual.Repositories
             string sql = @"
             SELECT
             srl.*,
-            srl.id AS SimRigId,
+            sr.id AS SimRigId,
             a.*
             FROM simRigLikes srl
-            JOIN accounts a ON srl.accountId
-            WHERE srl.id = @id;";
+            JOIN simRigs sr ON srl.simRigId = sr.id
+            JOIN accounts a ON srl.accountId = a.id
+            WHERE sr.id = @id;";
             return _db.Query<SimRigLikeViewModel, Profile, SimRigLikeViewModel>(sql, (simRig, profile) =>
             {
-                simRig.accountId = profile.Id;
+                simRig.AccountId = profile.Id;
+                simRig.ProfileName = profile.Name;
                 return simRig;
             }, new { id }).ToList();
         }

@@ -38,6 +38,8 @@ namespace RacingDual.Models
     {
         public int SimRigId { get; set; }
 
-        public string accountId { get; set; }
+        public string AccountId { get; set; }
+
+        public string ProfileName { get; set; }
     }
 }
