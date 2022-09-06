@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using RacingDual.Models;
 using RacingDual.Repositories;
 
@@ -28,6 +29,11 @@ namespace RacingDual.Services
             }
             return like;
         }
+
+        internal List<PostLikeViewModel> GetAllLikes(int id)
+        {
+            return _repo.GetAllLikes(id);
+        }
         internal PostLike PostLike(string userId, PostLike postLikeData, int postId)
         {
             Post found = _ps.GetById(postId);
@@ -49,5 +55,7 @@ namespace RacingDual.Services
             _repo.DeleteLike(id);
             return found;
         }
+
+
     }
 }

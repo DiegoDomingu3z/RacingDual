@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
@@ -42,6 +43,24 @@ namespace RacingDual.Controllers
             {
 
                 return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpGet("{id}/profiles")]
+        public async Task<ActionResult<List<PostLikeViewModel>>> GetAllLikes(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<PostLikeViewModel> likes = _pls.GetAllLikes(id);
+                return Ok(likes);
+
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+
             }
         }
 

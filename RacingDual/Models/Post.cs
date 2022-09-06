@@ -21,4 +21,13 @@ namespace RacingDual.Models
 
 
     }
+
+    public class PostLikeViewModel : Post
+    {
+        public int PostId { get; set; }
+
+        public string AccountId { get; set; }
+
+        public string ProfileName { get; set; }
+    }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
@@ -32,6 +33,26 @@ namespace RacingDual.Repositories
             }, new { id }).FirstOrDefault();
         }
 
+        internal List<PostLikeViewModel> GetAllLikes(int id)
+        {
+            string sql = @"
+            SELECT 
+            pl.*,
+            p.id AS PostId,
+            a.*
+            FROM postLikes pl
+            JOIN posts p ON pl.PostId = p.id
+            JOIN accounts a ON pl.accountId = a.id
+            WHERE p.id = @id
+            ";
+            return _db.Query<PostLikeViewModel, Profile, PostLikeViewModel>(sql, (postLike, profile) =>
+            {
+                postLike.AccountId = profile.Id;
+                postLike.ProfileName = profile.Name;
+                return postLike;
+            }, new { id }).ToList();
+        }
+
         internal PostLike PostLike(PostLike postLikeData)
         {
             string sql = @"
@@ -59,6 +80,8 @@ namespace RacingDual.Repositories
             _db.Execute(sql, found);
 
         }
+
+
 
         internal void DeleteLike(int id)
         {
