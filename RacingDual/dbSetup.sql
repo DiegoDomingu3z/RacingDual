@@ -34,6 +34,17 @@ CREATE TABLE
     ) default charset utf8 COMMENT '';
 
 CREATE TABLE
+    IF NOT EXISTS postComments(
+        id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        body TEXT NOT NULL,
+        creatorId VARCHAR(255) NOT NULL,
+        postId INT NOT NULL,
+        FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
+        FOREIGN KEY (postId) REFERENCES posts(id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
+
+CREATE TABLE
     IF NOT EXISTS simRigs(
         id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
@@ -70,5 +81,6 @@ CREATE TABLE
         img TEXT,
         profileId VARCHAR(255) NOT NULL,
         creatorId VARCHAR(255) NOT NULL,
+        isPrivate BOOLEAN DEFAULT true,
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
