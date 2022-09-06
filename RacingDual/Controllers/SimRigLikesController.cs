@@ -31,10 +31,10 @@ namespace RacingDual.Controllers
                 List<SimRigLikeViewModel> likes = _srl.GetAllLikes(id);
                 return Ok(likes);
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
 
-                throw;
+                return BadRequest(e.Message);
             }
         }
 
