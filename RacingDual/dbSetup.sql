@@ -60,3 +60,15 @@ CREATE TABLE
         FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE,
         FOREIGN KEY (simRigId) REFERENCES simRigs(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
+
+CREATE TABLE
+    IF NOT EXISTS privateMessages(
+        id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+        body TEXT,
+        img TEXT,
+        profileId VARCHAR(255) NOT NULL,
+        creatorId VARCHAR(255) NOT NULL,
+        FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';

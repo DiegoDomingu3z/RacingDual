@@ -47,6 +47,9 @@ namespace RacingDual
 
             services.AddTransient<SimRigLikesRepository>();
             services.AddTransient<SimRigLikesService>();
+
+            services.AddTransient<PrivateMessagesRepository>();
+            services.AddTransient<PrivateMessagesService>();
         }
 
         private void ConfigureCors(IServiceCollection services)
