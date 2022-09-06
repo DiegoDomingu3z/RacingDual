@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
@@ -18,6 +19,23 @@ namespace RacingDual.Controllers
         public SimRigLikesController(SimRigLikesService srl)
         {
             _srl = srl;
+        }
+
+
+        [HttpGet("{id}/profiles")]
+        public async Task<ActionResult<List<SimRigLikeViewModel>>> GetAllLikes(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<SimRigLikeViewModel> likes = _srl.GetAllLikes(id);
+                return Ok(likes);
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
         }
 
 

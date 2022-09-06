@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using RacingDual.Models;
 using RacingDual.Repositories;
 
@@ -44,6 +45,10 @@ namespace RacingDual.Services
 
         }
 
+        internal List<SimRigLikeViewModel> GetAllLikes(int id)
+        {
+            return _repo.GetAllLikes(id);
 
+        }
     }
 }

@@ -33,4 +33,11 @@ namespace RacingDual.Models
 
         public string WheelBase { get; set; }
     }
+
+    public class SimRigLikeViewModel : SimRig
+    {
+        public int SimRigId { get; set; }
+
+        public string accountId { get; set; }
+    }
 }

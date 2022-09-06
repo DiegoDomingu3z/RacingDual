@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
@@ -43,6 +44,23 @@ namespace RacingDual.Repositories
                 simRigLike.Creator = profile;
                 return simRigLike;
             }, new { id }).FirstOrDefault();
+        }
+
+        internal List<SimRigLikeViewModel> GetAllLikes(int id)
+        {
+            string sql = @"
+            SELECT
+            srl.*,
+            srl.id AS SimRigId,
+            a.*
+            FROM simRigLikes srl
+            JOIN accounts a ON srl.accountId
+            WHERE srl.id = @id;";
+            return _db.Query<SimRigLikeViewModel, Profile, SimRigLikeViewModel>(sql, (simRig, profile) =>
+            {
+                simRig.accountId = profile.Id;
+                return simRig;
+            }, new { id }).ToList();
         }
 
         internal void DeleteLike(int id)
