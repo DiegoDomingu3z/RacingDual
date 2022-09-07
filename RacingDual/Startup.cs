@@ -50,6 +50,9 @@ namespace RacingDual
 
             services.AddTransient<PrivateMessagesRepository>();
             services.AddTransient<PrivateMessagesService>();
+
+            services.AddTransient<PostCommentsRepository>();
+            services.AddTransient<PostCommentsService>();
         }
 
         private void ConfigureCors(IServiceCollection services)
