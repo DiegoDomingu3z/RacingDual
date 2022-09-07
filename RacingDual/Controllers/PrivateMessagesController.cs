@@ -20,17 +20,17 @@ namespace RacingDual.Controllers
             _pms = pms;
         }
 
-        [HttpPost("{id}")]
-        public async Task<ActionResult<PrivateMessages>> SendMessage(int id, [FromBody] PrivateMessages messageData)
+        [HttpPost("{id}/profileMessages")]
+        public async Task<ActionResult<PrivateMessages>> SendMessage(int profileId, [FromBody] PrivateMessages messageData)
         {
 
             try
             {
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-                PrivateMessages message = _pms.SendMessage(id, userInfo.Id, messageData);
+                PrivateMessages message = _pms.SendMessage(profileId, userInfo.Id, messageData);
                 message.Creator = userInfo;
                 message.CreatorId = userInfo.Id;
-                message.ProfileId = id.ToString();
+                message.ProfileId = profileId.ToString();
                 message.CreatedAt = new DateTime();
                 return Ok(message);
 

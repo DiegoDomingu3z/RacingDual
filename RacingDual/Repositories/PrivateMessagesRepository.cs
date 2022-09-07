@@ -1,5 +1,5 @@
-using System;
 using System.Data;
+using Dapper;
 using RacingDual.Models;
 
 namespace RacingDual.Repositories
@@ -15,7 +15,15 @@ namespace RacingDual.Repositories
 
         internal PrivateMessages SendMessage(PrivateMessages messageData)
         {
-            throw new NotImplementedException();
+            string sql = @"
+            INSERT into privateMessages
+            ()
+            VALUES
+            ();
+            SELECT LAST_INSERT_ID;";
+            int id = _db.ExecuteScalar<int>(sql, messageData);
+            messageData.Id = id;
+            return messageData;
         }
     }
 }
