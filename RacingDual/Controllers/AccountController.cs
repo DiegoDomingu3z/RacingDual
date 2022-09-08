@@ -15,9 +15,12 @@ namespace RacingDual.Controllers
     {
         private readonly AccountService _accountService;
 
-        public AccountController(AccountService accountService)
+        private readonly PrivateMessagesService _pms;
+
+        public AccountController(AccountService accountService, PrivateMessagesService pms)
         {
             _accountService = accountService;
+            _pms = pms;
         }
 
         [HttpGet]
@@ -34,7 +37,27 @@ namespace RacingDual.Controllers
                 return BadRequest(e.Message);
             }
         }
-    }
 
+
+        [HttpGet("messages/{id}/profileUser")]
+        [Authorize]
+        public async Task<ActionResult<List<PrivateMessages>>> MessagesWithUser(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<PrivateMessages> messages = _pms.MessageWithUser(id, userInfo.Id);
+                return Ok(messages);
+
+
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+
+            }
+        }
+
+    }
 
 }
