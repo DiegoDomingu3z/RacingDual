@@ -49,12 +49,12 @@ namespace RacingDual.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<PrivateMessages>> GetMessageById(int messageId)
+        public async Task<ActionResult<PrivateMessages>> GetMessageById(int id)
         {
             try
             {
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-                PrivateMessages message = _pms.GetMessageById(messageId, userInfo.Id);
+                PrivateMessages message = _pms.GetMessageById(id, userInfo.Id);
                 return Ok(message);
 
             }

@@ -31,12 +31,11 @@ namespace RacingDual.Repositories
         {
             string sql = @"
            SELECT 
-           pm.*
+           pm.*,
            a.*
            FROM privateMessages pm
            JOIN accounts a ON pm.creatorId = a.id
-           WHERE pm.id = @messageId AND pm.creatorId = userId
-           ";
+           WHERE pm.id = @messageId";
             return _db.Query<PrivateMessages, Profile, PrivateMessages>(sql, (pm, prof) =>
             {
                 pm.Creator = prof;

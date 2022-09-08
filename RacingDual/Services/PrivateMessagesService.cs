@@ -29,9 +29,10 @@ namespace RacingDual.Services
         internal PrivateMessages GetMessageById(int messageId, string userId)
         {
             PrivateMessages foundMessage = _repo.GetMessageById(messageId, userId);
-            if (foundMessage.CreatorId != userId)
+
+            if (foundMessage.CreatorId != userId && foundMessage.ProfileId != userId)
             {
-                throw new Exception("You don't have access to get this message");
+                throw new Exception("This message does not exist"); //It does I just don't want someone to know something exists there
             }
             if (foundMessage == null)
             {
