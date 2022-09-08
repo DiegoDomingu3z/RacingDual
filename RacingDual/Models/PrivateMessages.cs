@@ -16,7 +16,7 @@ namespace RacingDual.Models
 
         public string Img { get; set; }
 
-        public bool isPrivate { get; set; }
+        public bool? isPrivate { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

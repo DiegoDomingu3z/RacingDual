@@ -1,4 +1,5 @@
 using System.Data;
+using System.Linq;
 using Dapper;
 using RacingDual.Models;
 
@@ -16,14 +17,31 @@ namespace RacingDual.Repositories
         internal PrivateMessages SendMessage(PrivateMessages messageData)
         {
             string sql = @"
-            INSERT into privateMessages
-            ()
+            INSERT INTO privateMessages
+            (body, profileId, isPrivate, creatorId)
             VALUES
-            ();
-            SELECT LAST_INSERT_ID;";
+            (@body, @profileId, @isPrivate, @creatorId);
+            SELECT LAST_INSERT_ID();";
             int id = _db.ExecuteScalar<int>(sql, messageData);
             messageData.Id = id;
             return messageData;
+        }
+
+        internal PrivateMessages GetMessageById(int messageId, string userId)
+        {
+            string sql = @"
+           SELECT 
+           pm.*
+           a.*
+           FROM privateMessages pm
+           JOIN accounts a ON pm.creatorId = a.id
+           WHERE pm.id = @messageId AND pm.creatorId = userId
+           ";
+            return _db.Query<PrivateMessages, Profile, PrivateMessages>(sql, (pm, prof) =>
+            {
+                pm.Creator = prof;
+                return pm;
+            }, new { messageId }).FirstOrDefault();
         }
     }
 }

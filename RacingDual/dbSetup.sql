@@ -78,9 +78,8 @@ CREATE TABLE
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
         body TEXT,
-        img TEXT,
-        profileId VARCHAR(255) NOT NULL,
+        profileId TEXT NOT NULL,
         creatorId VARCHAR(255) NOT NULL,
-        isPrivate BOOLEAN DEFAULT true,
+        isPrivate TINYINT(1) NOT NULL,
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';

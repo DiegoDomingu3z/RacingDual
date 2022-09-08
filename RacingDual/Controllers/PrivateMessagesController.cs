@@ -20,6 +20,10 @@ namespace RacingDual.Controllers
             _pms = pms;
         }
 
+
+
+
+
         [HttpPost("{id}/profileMessages")]
         public async Task<ActionResult<PrivateMessages>> SendMessage(int profileId, [FromBody] PrivateMessages messageData)
         {
@@ -27,13 +31,31 @@ namespace RacingDual.Controllers
             try
             {
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                messageData.CreatorId = userInfo.Id;
+                messageData.CreatedAt = new DateTime();
+                messageData.isPrivate = true;
                 PrivateMessages message = _pms.SendMessage(profileId, userInfo.Id, messageData);
                 message.Creator = userInfo;
-                message.CreatorId = userInfo.Id;
-                message.ProfileId = profileId.ToString();
-                message.CreatedAt = new DateTime();
                 return Ok(message);
 
+
+            }
+            catch (System.Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PrivateMessages>> GetMessageById(int messageId)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                PrivateMessages message = _pms.GetMessageById(messageId, userInfo.Id);
+                return Ok(message);
 
             }
             catch (System.Exception e)

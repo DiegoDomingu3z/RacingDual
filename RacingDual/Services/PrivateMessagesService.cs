@@ -25,5 +25,19 @@ namespace RacingDual.Services
             }
             return _repo.SendMessage(messageData);
         }
+
+        internal PrivateMessages GetMessageById(int messageId, string userId)
+        {
+            PrivateMessages foundMessage = _repo.GetMessageById(messageId, userId);
+            if (foundMessage.CreatorId != userId)
+            {
+                throw new Exception("You don't have access to get this message");
+            }
+            if (foundMessage == null)
+            {
+                throw new Exception("This message does not exist");
+            }
+            return foundMessage;
+        }
     }
 }
