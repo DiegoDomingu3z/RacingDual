@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using RacingDual.Models;
 using RacingDual.Repositories;
 
@@ -39,6 +40,11 @@ namespace RacingDual.Services
                 throw new Exception("This message does not exist");
             }
             return foundMessage;
+        }
+
+        internal List<PrivateMessages> MessageWithUser(int id1, string id2)
+        {
+            throw new NotImplementedException();
         }
     }
 }
