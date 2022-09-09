@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
@@ -62,6 +63,25 @@ namespace RacingDual.Controllers
             {
 
                 return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("{id}/profileMessages")]
+
+        public async Task<ActionResult<List<PrivateMessages>>> MessagesWithUser(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<PrivateMessages> messages = _pms.MessageWithUser(id, userInfo.Id);
+                return Ok(messages);
+
+
+            }
+            catch (System.Exception e)
+            {
+                return BadRequest(e.Message);
+
             }
         }
     }

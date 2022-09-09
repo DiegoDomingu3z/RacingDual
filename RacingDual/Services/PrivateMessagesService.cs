@@ -42,9 +42,10 @@ namespace RacingDual.Services
             return foundMessage;
         }
 
-        internal List<PrivateMessages> MessageWithUser(int id1, string id2)
+        internal List<PrivateMessages> MessageWithUser(int userChatId, string userId)
         {
-            throw new NotImplementedException();
+
+            return _repo.MessageWithUser(userChatId);
         }
     }
 }

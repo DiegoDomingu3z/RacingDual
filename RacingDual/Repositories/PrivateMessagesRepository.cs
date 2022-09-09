@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
@@ -41,6 +42,23 @@ namespace RacingDual.Repositories
                 pm.Creator = prof;
                 return pm;
             }, new { messageId }).FirstOrDefault();
+        }
+
+        internal List<PrivateMessages> MessageWithUser(int userChatId)
+        {
+            string sql = @"
+            SELECT
+            pm.*,
+            a.*
+            FROM privateMessages pm
+            JOIN accounts a ON pm.creatorId = a.id
+            WHERE pm.profileId = @userChatId"
+            ;
+            return _db.Query<PrivateMessages, Profile, PrivateMessages>(sql, (pm, prof) =>
+            {
+                pm.Creator = prof;
+                return pm;
+            }).ToList();
         }
     }
 }
