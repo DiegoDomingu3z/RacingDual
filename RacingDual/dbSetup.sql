@@ -73,6 +73,28 @@ CREATE TABLE
     ) default charset utf8 COMMENT '';
 
 CREATE TABLE
+    IF NOT EXISTS chatRooms(
+        id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        isAccepted TINYINT DEFAULT 0,
+        accountId VARCHAR(255) NOT NULL,
+        profileId VARCHAR(255) NOT NULL,
+        FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
+
+CREATE TABLE
+    IF NOT EXISTS Chats(
+        id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        body TEXT NOT NULL,
+        creatorId VARCHAR(255) NOT NULL,
+        userProfileId VARCHAR(255) NOT NULL,
+        chatRoomId INT NOT NULL,
+        FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
+        FOREIGN KEY (chatRoomId) REFERENCES chatRooms(id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
+
+CREATE TABLE
     IF NOT EXISTS privateMessages(
         id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',

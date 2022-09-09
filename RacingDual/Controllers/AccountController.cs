@@ -5,6 +5,7 @@ using RacingDual.Services;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace RacingDual.Controllers
 {
@@ -16,10 +17,13 @@ namespace RacingDual.Controllers
 
         private readonly PrivateMessagesService _pms;
 
-        public AccountController(AccountService accountService, PrivateMessagesService pms)
+        private readonly ChatRoomsService _crs;
+
+        public AccountController(AccountService accountService, PrivateMessagesService pms, ChatRoomsService crs)
         {
             _accountService = accountService;
             _pms = pms;
+            _crs = crs;
         }
 
         [HttpGet]
@@ -36,6 +40,25 @@ namespace RacingDual.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
+        [HttpGet("ChatRooms")]
+        public async Task<ActionResult<List<ChatRoom>>> GetAllChats()
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<ChatRoom> chats = _crs.GetAllChats(userInfo.Id);
+                return Ok(chats);
+
+            }
+            catch (System.Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
 
 
 

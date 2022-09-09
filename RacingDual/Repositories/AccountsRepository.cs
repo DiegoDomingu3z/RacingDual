@@ -47,5 +47,7 @@ namespace RacingDual.Repositories
             _db.Execute(sql, update);
             return update;
         }
+
+
     }
 }

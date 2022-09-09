@@ -53,6 +53,9 @@ namespace RacingDual
 
             services.AddTransient<PostCommentsRepository>();
             services.AddTransient<PostCommentsService>();
+
+            services.AddTransient<ChatRoomsRepository>();
+            services.AddTransient<ChatRoomsService>();
         }
 
         private void ConfigureCors(IServiceCollection services)
