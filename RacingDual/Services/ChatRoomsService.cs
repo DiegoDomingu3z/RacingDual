@@ -14,6 +14,11 @@ namespace RacingDual.Services
             _repo = repo;
         }
 
+
+
+
+        // Eventually add a check if the targetData.profileId exists
+        // ADD LOGIC TO ISACCEPTED LATER ONCE EVERYTHING IS CONNECTED
         internal ChatRoom CreateChatRoom(ChatRoom targetData, string id)
         {
             if (id == null)
@@ -26,6 +31,7 @@ namespace RacingDual.Services
         internal List<ChatRoom> GetAllChats(string id)
         {
             return _repo.GetAllChats(id);
+
         }
     }
 }
