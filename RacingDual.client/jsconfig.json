@@ -1,6 +1,7 @@
 {
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "vue.config.js"
   ],
   "compilerOptions": {
     "jsx": "preserve"
