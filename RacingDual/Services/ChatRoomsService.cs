@@ -8,11 +8,15 @@ namespace RacingDual.Services
     public class ChatRoomsService
     {
         private readonly ChatRoomsRepository _repo;
+        private readonly ProfilesRepository _rp;
 
-        public ChatRoomsService(ChatRoomsRepository repo)
+        public ChatRoomsService(ChatRoomsRepository repo, ProfilesRepository rp)
         {
             _repo = repo;
+            _rp = rp;
         }
+
+
 
 
 
@@ -30,7 +34,20 @@ namespace RacingDual.Services
 
         internal List<ChatRoom> GetAllChats(string id)
         {
-            return _repo.GetAllChats(id);
+            List<ChatRoom> chats = _repo.GetAllChats(id);
+            foreach (var c in chats)
+            {
+                var newId = c.ProfileId;
+                Profile profile = _rp.GetProfile(newId);
+                c.ProfilePic = profile.Picture;
+                c.ProfileName = profile.Name;
+
+
+            }
+            return chats;
+
+
+
 
         }
     }

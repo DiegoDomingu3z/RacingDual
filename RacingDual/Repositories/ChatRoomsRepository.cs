@@ -41,7 +41,9 @@ namespace RacingDual.Repositories
             WHERE c.accountId = @id";
             return _db.Query<ChatRoom, Profile, ChatRoom>(sql, (chatRoom, prof) =>
             {
+                chatRoom.MyAccount = prof;
                 return chatRoom;
+
             }, new { id }).ToList();
         }
     }

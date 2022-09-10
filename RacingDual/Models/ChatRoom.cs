@@ -13,6 +13,12 @@ namespace RacingDual.Models
         public string AccountId { get; set; }
 
         public string ProfileId { get; set; }
+
+        public Profile MyAccount { get; set; }
+
+        public string ProfileName { get; set; }
+
+        public string ProfilePic { get; set; }
     }
 
     public class ChatViewModel : ChatRoom

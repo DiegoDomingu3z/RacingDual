@@ -36,6 +36,9 @@ namespace RacingDual
             services.AddScoped<AccountsRepository>();
             services.AddScoped<AccountService>();
 
+            services.AddTransient<ProfilesRepository>();
+            services.AddTransient<ProfilesService>();
+
             services.AddTransient<PostsRepository>();
             services.AddTransient<PostsService>();
 
@@ -56,6 +59,8 @@ namespace RacingDual
 
             services.AddTransient<ChatRoomsRepository>();
             services.AddTransient<ChatRoomsService>();
+
+
         }
 
         private void ConfigureCors(IServiceCollection services)
