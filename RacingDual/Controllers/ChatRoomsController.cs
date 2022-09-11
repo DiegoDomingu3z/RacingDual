@@ -43,6 +43,24 @@ namespace RacingDual.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ChatRoom>> GetChatRoom(int id)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                ChatRoom room = _crs.GetChatRoom(id, userInfo.Id);
+                room.MyAccount = userInfo;
+                return Ok(room);
+
+            }
+            catch (System.Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
 
     }
 }

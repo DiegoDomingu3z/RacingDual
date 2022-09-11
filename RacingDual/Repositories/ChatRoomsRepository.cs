@@ -46,5 +46,12 @@ namespace RacingDual.Repositories
 
             }, new { id }).ToList();
         }
+
+        internal ChatRoom GetChatRoom(int id)
+        {
+            string sql = @"
+            SELECT * FROM chatRooms cr WHERE cr.id = @id";
+            return _db.QueryFirstOrDefault<ChatRoom>(sql, new { id });
+        }
     }
 }

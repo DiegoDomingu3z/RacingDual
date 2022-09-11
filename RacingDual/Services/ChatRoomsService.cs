@@ -42,6 +42,7 @@ namespace RacingDual.Services
             return _repo.CreateChatRoom(targetData);
         }
 
+        // GET ALL PERSONAL ACCOUNT ChatRooms
         internal List<ChatRoom> GetAllChats(string id)
         {
             List<ChatRoom> chats = _repo.GetAllChats(id);
@@ -58,6 +59,24 @@ namespace RacingDual.Services
 
 
 
+
+        }
+        // GET chatRoom by id
+        internal ChatRoom GetChatRoom(int id, string userId)
+        {
+            ChatRoom room = _repo.GetChatRoom(id);
+            if (room == null)
+            {
+                throw new Exception("this chat room does not exist");
+            }
+            if (room.AccountId != userId && room.ProfileId != userId)
+            {
+                throw new Exception("No Access allowed");
+            }
+            Profile profile = _ps.GetProfile(room.ProfileId);
+            room.ProfileName = profile.Name;
+            room.ProfilePic = profile.Picture;
+            return room;
 
         }
     }

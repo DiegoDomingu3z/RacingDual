@@ -5,6 +5,9 @@
         <img class="img-fluid img" src="../assets/img/RD-logo.jpg" alt="" />
       </router-link>
     </div>
+    <div>
+      <Login />
+    </div>
   </nav>
 </template>
 
