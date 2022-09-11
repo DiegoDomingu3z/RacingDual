@@ -31,6 +31,7 @@ namespace RacingDual.Controllers
                 targetData.CreatedAt = new DateTime();
                 targetData.AccountId = userInfo.Id;
                 ChatRoom target = _crs.CreateChatRoom(targetData, userInfo.Id);
+                target.MyAccount = userInfo;
                 return Ok(target);
 
 

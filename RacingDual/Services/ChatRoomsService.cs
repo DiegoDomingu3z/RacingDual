@@ -8,13 +8,16 @@ namespace RacingDual.Services
     public class ChatRoomsService
     {
         private readonly ChatRoomsRepository _repo;
-        private readonly ProfilesRepository _rp;
+        private readonly ProfilesService _ps;
 
-        public ChatRoomsService(ChatRoomsRepository repo, ProfilesRepository rp)
+        public ChatRoomsService(ChatRoomsRepository repo, ProfilesService ps)
         {
             _repo = repo;
-            _rp = rp;
+            _ps = ps;
         }
+
+
+
 
 
 
@@ -29,6 +32,13 @@ namespace RacingDual.Services
             {
                 throw new Exception("You must be logged in to message someone");
             }
+            Profile profile = _ps.GetProfile(targetData.ProfileId);
+            if (profile == null)
+            {
+                throw new Exception("this user does not exists");
+            }
+            targetData.ProfileName = profile.Name;
+            targetData.ProfilePic = profile.Picture;
             return _repo.CreateChatRoom(targetData);
         }
 
@@ -38,7 +48,7 @@ namespace RacingDual.Services
             foreach (var c in chats)
             {
                 var newId = c.ProfileId;
-                Profile profile = _rp.GetProfile(newId);
+                Profile profile = _ps.GetProfile(newId);
                 c.ProfilePic = profile.Picture;
                 c.ProfileName = profile.Name;
 

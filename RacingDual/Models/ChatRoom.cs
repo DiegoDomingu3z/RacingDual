@@ -21,10 +21,7 @@ namespace RacingDual.Models
         public string ProfilePic { get; set; }
     }
 
-    public class ChatViewModel : ChatRoom
-    {
-        public int ChatRoomId { get; set; }
-    }
+
 
 
 }

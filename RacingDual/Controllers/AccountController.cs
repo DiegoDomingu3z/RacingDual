@@ -11,6 +11,7 @@ namespace RacingDual.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class AccountController : ControllerBase
     {
         private readonly AccountService _accountService;
@@ -27,7 +28,7 @@ namespace RacingDual.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+
         public async Task<ActionResult<Account>> Get()
         {
             try

@@ -60,6 +60,9 @@ namespace RacingDual
             services.AddTransient<ChatRoomsRepository>();
             services.AddTransient<ChatRoomsService>();
 
+            services.AddTransient<ChatsRepository>();
+            services.AddTransient<ChatsService>();
+
 
         }
 

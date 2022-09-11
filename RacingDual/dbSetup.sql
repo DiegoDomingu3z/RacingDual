@@ -83,7 +83,7 @@ CREATE TABLE
     ) default charset utf8 COMMENT '';
 
 CREATE TABLE
-    IF NOT EXISTS Chats(
+    IF NOT EXISTS chats(
         id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
         body TEXT NOT NULL,

@@ -12,5 +12,14 @@ namespace RacingDual.Models
 
         public string UserProfileId { get; set; }
 
+        public string UserProfileName { get; set; }
+
+        public string UserProfilePic { get; set; }
+        public int ChatRoomId { get; set; }
+
+        public Profile Creator { get; set; }
+
     }
+
+
 }
