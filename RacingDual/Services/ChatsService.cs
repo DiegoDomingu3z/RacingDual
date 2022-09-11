@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using RacingDual.Models;
 using RacingDual.Repositories;
 
@@ -10,10 +11,13 @@ namespace RacingDual.Services
 
         private readonly ProfilesService _ps;
 
-        public ChatsService(ChatsRepository repo, ProfilesService ps)
+        private readonly ChatRoomsService _crs;
+
+        public ChatsService(ChatsRepository repo, ProfilesService ps, ChatRoomsService crs)
         {
             _repo = repo;
             _ps = ps;
+            _crs = crs;
         }
 
         internal Chat NewChat(int id, Chat chatData)
@@ -27,6 +31,13 @@ namespace RacingDual.Services
             return _repo.NewChat(chatData);
 
 
+        }
+
+        internal List<Chat> ChatInChatRoom(int chatRoomId, string id)
+        {
+            ChatRoom room = _crs.GetChatRoom(chatRoomId, id);
+
+            // CREATE getById in chatRoom and make sure you can only get it if you are the creator
         }
     }
 }

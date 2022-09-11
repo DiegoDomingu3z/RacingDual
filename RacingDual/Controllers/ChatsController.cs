@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
 using Microsoft.AspNetCore.Authorization;
@@ -40,6 +41,23 @@ namespace RacingDual.Controllers
                 newChat.Creator = userInfo;
                 newChat.UserProfilePic = profile.Picture;
                 return Ok(newChat);
+            }
+            catch (System.Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<Chat>>> ChatsInChatRoom(int chatRoomId)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                List<Chat> chats = _cs.ChatInChatRoom(chatRoomId, userInfo.Id);
+                return Ok(chats);
             }
             catch (System.Exception e)
             {
