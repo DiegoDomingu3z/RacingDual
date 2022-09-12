@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
 using RacingDual.Models;
 
@@ -24,6 +26,13 @@ namespace RacingDual.Repositories
             int id = _db.ExecuteScalar<int>(sql, chatData);
             chatData.Id = id;
             return chatData;
+        }
+
+        internal List<Chat> ChatsInChatRoom(int id)
+        {
+            string sql = @"
+            SELECT * FROM chats";
+            return _db.Query<Chat>(sql, new { id }).ToList();
         }
     }
 }

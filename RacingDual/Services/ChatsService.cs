@@ -37,7 +37,11 @@ namespace RacingDual.Services
         {
             ChatRoom room = _crs.GetChatRoom(chatRoomId, id);
 
-            // CREATE getById in chatRoom and make sure you can only get it if you are the creator
+            // if (room.AccountId != id || room.ProfileId != id)
+            // {
+            //     throw new Exception("This chat room does not exists"); //It does its just not theirs
+            // }
+            return _repo.ChatsInChatRoom(chatRoomId);
         }
     }
 }
