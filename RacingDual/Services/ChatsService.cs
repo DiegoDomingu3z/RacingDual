@@ -35,13 +35,30 @@ namespace RacingDual.Services
 
         internal List<Chat> ChatInChatRoom(int chatRoomId, string id)
         {
-            ChatRoom room = _crs.GetChatRoom(chatRoomId, id);
+            // ChatRoom room = _crs.GetChatRoom(chatRoomId, id);
 
             // if (room.AccountId != id || room.ProfileId != id)
             // {
             //     throw new Exception("This chat room does not exists"); //It does its just not theirs
             // }
             return _repo.ChatsInChatRoom(chatRoomId);
+        }
+
+        internal Chat GetChatById(int id, string userId)
+        {
+            Chat chat = _repo.GetChatById(id);
+            if (chat == null)
+            {
+                throw new Exception("This chat does not exist");
+            }
+            if (chat.CreatorId != userId)
+            {
+                throw new Exception("This chat does not exist");
+            }
+            Profile profile = _ps.GetProfile(chat.UserProfileId);
+            chat.UserProfilePic = profile.Picture;
+            chat.UserProfileName = profile.Name;
+            return chat;
         }
     }
 }

@@ -28,11 +28,36 @@ namespace RacingDual.Repositories
             return chatData;
         }
 
-        internal List<Chat> ChatsInChatRoom(int id)
+        internal List<Chat> ChatsInChatRoom(int chatRoomId)
         {
             string sql = @"
-            SELECT * FROM chats";
-            return _db.Query<Chat>(sql, new { id }).ToList();
+            SELECT
+            c.*,
+            a.*
+            FROM chats c
+            JOIN accounts a ON c.creatorId = a.id
+            WHERE c.chatRoomId = @chatRoomId";
+            return _db.Query<Chat, Profile, Chat>(sql, (chats, profile) =>
+            {
+                chats.Creator = profile;
+                return chats;
+            }, new { chatRoomId }).ToList();
+        }
+
+        internal Chat GetChatById(int id)
+        {
+            string sql = @"
+            SELECT
+            c.*,
+            a.*
+            FROM chats c
+            JOIN accounts a ON c.creatorId
+            WHERE c.id = @id";
+            return _db.Query<Chat, Profile, Chat>(sql, (chat, profile) =>
+            {
+                chat.Creator = profile;
+                return chat;
+            }, new { id }).FirstOrDefault();
         }
     }
 }
