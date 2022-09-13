@@ -59,5 +59,13 @@ namespace RacingDual.Repositories
                 return chat;
             }, new { id }).FirstOrDefault();
         }
+
+        internal void DeleteChat(int id)
+        {
+            string sql = @"
+            DELETE FROM chats 
+            WHERE id = @id";
+            _db.Execute(sql, new { id });
+        }
     }
 }

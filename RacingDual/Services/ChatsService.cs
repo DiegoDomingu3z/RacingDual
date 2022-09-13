@@ -60,5 +60,13 @@ namespace RacingDual.Services
             chat.UserProfileName = profile.Name;
             return chat;
         }
+
+        internal Chat DeleteChat(int id, string userId)
+        {
+            Chat chat = GetChatById(id, userId);
+            _repo.DeleteChat(id);
+            return chat;
+
+        }
     }
 }
