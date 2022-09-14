@@ -44,6 +44,9 @@ namespace RacingDual.Repositories
             }, new { chatRoomId }).ToList();
         }
 
+
+
+
         internal Chat GetChatById(int id)
         {
             string sql = @"

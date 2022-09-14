@@ -67,7 +67,7 @@ namespace RacingDual.Controllers
         }
 
 
-        [HttpGet("{id}/chatRoom")]
+        [HttpGet("{chatRoomId}/chatRoom")]
         public async Task<ActionResult<List<Chat>>> ChatsInChatRoom(int chatRoomId)
         {
             try
