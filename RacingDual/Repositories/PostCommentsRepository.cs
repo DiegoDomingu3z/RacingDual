@@ -73,5 +73,13 @@ namespace RacingDual.Repositories
             _db.Execute(sql, original);
             return original;
         }
+
+        internal void RemoveComment(int id)
+        {
+            string sql = @"
+            DELETE FROM postComments
+            WHERE id = @id ";
+            _db.ExecuteScalar(sql, new { id });
+        }
     }
 }

@@ -89,7 +89,7 @@ namespace RacingDual.Controllers
                 Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
                 commentData.CreatedAt = new DateTime();
                 commentData.CreatorId = userInfo.Id;
-                PostComment newComment = _pcs.CreateComment(commentData, userInfo.Id);
+                PostComment newComment = _pcs.CreateComment(commentData, userInfo.Id, id);
                 newComment.Creator = userInfo;
                 return Ok(newComment);
             }

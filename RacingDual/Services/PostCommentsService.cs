@@ -9,16 +9,25 @@ namespace RacingDual.Services
     {
         private readonly PostCommentsRepository _repo;
 
-        public PostCommentsService(PostCommentsRepository repo)
+        private readonly PostsService _ps;
+
+        public PostCommentsService(PostCommentsRepository repo, PostsService ps)
         {
             _repo = repo;
+            _ps = ps;
         }
 
-        internal PostComment CreateComment(PostComment commentData, string id)
+        internal PostComment CreateComment(PostComment commentData, string userId, int postId)
         {
-            if (id == null)
+            if (userId == null)
             {
                 throw new Exception("You need to be logged in to comment");
+            }
+            Post post = _ps.GetById(postId);
+            if (post == null)
+            {
+                throw new Exception("This post does not exists");
+
             }
             return _repo.CreateComment(commentData);
         }
@@ -56,6 +65,17 @@ namespace RacingDual.Services
             return original;
 
 
+        }
+
+        internal PostComment RemoveComment(int id, string userId)
+        {
+            PostComment removingComment = GetById(id, userId);
+            if (removingComment.CreatorId != userId)
+            {
+                throw new Exception("Forbidden");
+            }
+            _repo.RemoveComment(id);
+            return removingComment;
         }
     }
 }
