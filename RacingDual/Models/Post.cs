@@ -30,4 +30,14 @@ namespace RacingDual.Models
 
         public string ProfileName { get; set; }
     }
+
+
+    public class PostCommentViewModel : Post
+    {
+        public int postId { get; set; }
+        public string AccountId { get; set; }
+
+        public string ProfileName { get; set; }
+
+    }
 }

@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
 using RacingDual.Models;
 
@@ -24,6 +26,41 @@ namespace RacingDual.Repositories
             int id = _db.ExecuteScalar<int>(sql, commentData);
             commentData.Id = id;
             return commentData;
+        }
+
+        internal List<PostComment> GetAllComments(int postId)
+        {
+            string sql = @"
+            SELECT
+            pc.*,
+            a.*
+            FROM postComments pc
+            JOIN accounts a ON pc.creatorId = a.id
+            WHERE pc.postId = @postId
+            ";
+            return _db.Query<PostComment, Profile, PostComment>(sql, (comment, profile) =>
+            {
+                comment.Creator = profile;
+                return comment;
+
+            }, new { postId }).ToList();
+        }
+
+        internal PostComment GetById(int id)
+        {
+            string sql = @"
+            SELECT
+            pc.*,
+            a.*
+            FROM postComments pc
+            JOIN accounts a ON pc.creatorId = a.id
+            WHERE pc.id = @id";
+            return _db.Query<PostComment, Profile, PostComment>(sql, (comment, profile) =>
+            {
+                comment.Creator = profile;
+                return comment;
+            }, new { id }).FirstOrDefault();
+
         }
     }
 }
