@@ -51,8 +51,6 @@ namespace RacingDual
             services.AddTransient<SimRigLikesRepository>();
             services.AddTransient<SimRigLikesService>();
 
-            services.AddTransient<PrivateMessagesRepository>();
-            services.AddTransient<PrivateMessagesService>();
 
             services.AddTransient<PostCommentsRepository>();
             services.AddTransient<PostCommentsService>();

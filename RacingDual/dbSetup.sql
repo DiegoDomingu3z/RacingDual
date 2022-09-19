@@ -93,15 +93,3 @@ CREATE TABLE
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE,
         FOREIGN KEY (chatRoomId) REFERENCES chatRooms(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
-
-CREATE TABLE
-    IF NOT EXISTS privateMessages(
-        id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
-        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
-        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
-        body TEXT,
-        profileId TEXT NOT NULL,
-        creatorId VARCHAR(255) NOT NULL,
-        isPrivate TINYINT(1) NOT NULL,
-        FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
-    ) default charset utf8 COMMENT '';
