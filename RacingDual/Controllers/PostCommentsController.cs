@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RacingDual.Services;
 
@@ -5,6 +6,7 @@ namespace RacingDual.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PostCommentsController : ControllerBase
     {
         private readonly PostCommentsService _pcs;
@@ -13,5 +15,10 @@ namespace RacingDual.Controllers
         {
             _pcs = pcs;
         }
+
+
+
+
+
     }
 }

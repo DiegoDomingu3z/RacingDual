@@ -15,5 +15,7 @@ namespace RacingDual.Models
         public Profile Creator { get; set; }
 
         public int PostId { get; set; }
+
+
     }
 }

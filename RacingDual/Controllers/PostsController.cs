@@ -16,9 +16,12 @@ namespace RacingDual.Controllers
 
         private readonly PostsService _ps;
 
-        public PostsController(PostsService ps)
+        private readonly PostCommentsService _pcs;
+
+        public PostsController(PostsService ps, PostCommentsService pcs)
         {
             _ps = ps;
+            _pcs = pcs;
         }
 
         [HttpGet]
@@ -71,6 +74,28 @@ namespace RacingDual.Controllers
             }
             catch (System.Exception e)
             {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpPost("{id}/comments")]
+        [Authorize]
+
+        public async Task<ActionResult<PostComment>> CreateComment(int id, [FromBody] PostComment commentData)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                commentData.CreatedAt = new DateTime();
+                commentData.CreatorId = userInfo.Id;
+                PostComment newComment = _pcs.CreateComment(commentData, userInfo.Id);
+                newComment.Creator = userInfo;
+                return Ok(newComment);
+            }
+            catch (System.Exception e)
+            {
+
                 return BadRequest(e.Message);
             }
         }
