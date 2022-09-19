@@ -53,6 +53,23 @@ namespace RacingDual.Controllers
             }
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult<PostComment>> EditComment(int id, [FromBody] PostComment commentData)
+        {
+            try
+            {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                PostComment comment = _pcs.EditComment(id, userInfo.Id, commentData);
+                return Ok(comment);
+
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+        }
+
 
 
     }

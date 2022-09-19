@@ -62,5 +62,16 @@ namespace RacingDual.Repositories
             }, new { id }).FirstOrDefault();
 
         }
+
+        internal PostComment EditComment(int id, PostComment original)
+        {
+            string sql = @"
+           UPDATE postComments
+           SET
+           body = @Body
+           WHERE id = @id";
+            _db.Execute(sql, original);
+            return original;
+        }
     }
 }

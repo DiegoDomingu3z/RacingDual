@@ -43,5 +43,19 @@ namespace RacingDual.Services
             }
             return foundComment;
         }
+
+        internal PostComment EditComment(int id, string userId, PostComment commentData)
+        {
+            PostComment original = GetById(id, userId);
+            if (original.CreatorId != userId)
+            {
+                throw new Exception("This is not your comment");
+            }
+            original.Body = commentData.Body ?? original.Body;
+            _repo.EditComment(id, original);
+            return original;
+
+
+        }
     }
 }

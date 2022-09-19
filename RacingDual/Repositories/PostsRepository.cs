@@ -69,7 +69,8 @@ namespace RacingDual.Repositories
             string sql = @"
             UPDATE posts
             Set
-            description = @description";
+            description = @description
+            WHERE id = @id";
             _db.Execute(sql, original);
             return original;
         }
