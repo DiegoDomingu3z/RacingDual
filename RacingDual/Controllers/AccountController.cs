@@ -16,14 +16,12 @@ namespace RacingDual.Controllers
     {
         private readonly AccountService _accountService;
 
-        private readonly PrivateMessagesService _pms;
 
         private readonly ChatRoomsService _crs;
 
-        public AccountController(AccountService accountService, PrivateMessagesService pms, ChatRoomsService crs)
+        public AccountController(AccountService accountService, ChatRoomsService crs)
         {
             _accountService = accountService;
-            _pms = pms;
             _crs = crs;
         }
 
