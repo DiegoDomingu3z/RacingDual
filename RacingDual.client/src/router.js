@@ -21,6 +21,12 @@ const routes = [
     name: 'Account',
     component: loadPage('AccountPage'),
     beforeEnter: authGuard
+  },
+  {
+    path: '/mainFeed',
+    name: 'MainFeed',
+    component: loadPage('MainFeedPage'),
+    beforeEnter: loadPage
   }
 ]
 

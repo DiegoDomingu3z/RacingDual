@@ -3,7 +3,7 @@ import { AppState } from "../AppState"
 import { logger } from "../utils/Logger"
 
 const FormulaApi = axios.create({
-    baseURL: 'http://api.sportradar.us/formula1/trial/v2/en',
+    baseURL: 'https://api.sportradar.us/formula1/trial/v2/en',
     // headers: 'Access-Control-Allow-Origin: *',
     setTimeout: 5000
 })

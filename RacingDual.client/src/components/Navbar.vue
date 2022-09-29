@@ -5,6 +5,7 @@
         <img class="img-fluid img" src="../assets/img/RD-logo.jpg" alt="" />
       </router-link>
     </div>
+    <router-link :to="{ name: 'MainFeed' }">go to main feed</router-link>
     <div>
       <Login />
     </div>
@@ -12,9 +13,16 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core';
+import Pop from '../utils/Pop';
+import { AppState } from '../AppState';
+
 export default {
   setup() {
-    return {};
+    return {
+
+    };
+
   },
 };
 </script>

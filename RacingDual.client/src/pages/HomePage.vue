@@ -14,6 +14,7 @@ export default {
     onMounted(async () => {
       try {
         await formulaOneService.getCurrentSeasonSchedule()
+
       } catch (error) {
 
       }
