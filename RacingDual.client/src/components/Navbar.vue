@@ -1,23 +1,54 @@
 <template>
   <nav>
-    <div class="row">
+    <div class="row gx-0">
       <div class="col-6">hello</div>
       <div class="col-6">
-        <div>
-          <ul id="navbar">
-            <div class="dropdown">
-              <li type="button">F1</li>
-              <div class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
-              </div>
+        <div class="row">
+          <div class="navbar-info">
+            <div class="">
+              <ul id="navbar" class="">
+                <div class="dropdown">
+                  <li type="button" class="dropbtn p-3 rounded">F1</li>
+                  <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                  </div>
+                </div>
+                <div class="dropdown">
+                  <div class="dropdown">
+                    <li type="button" class="dropbtn">Gt Racing</li>
+                    <div class="dropdown-content">
+                      <a href="#">Link 1</a>
+                      <a href="#">Link 2</a>
+                      <a href="#">Link 3</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown">
+                  <div class="dropdown">
+                    <li type="button" class="dropbtn">Indy Racing</li>
+                    <div class="dropdown-content">
+                      <a href="#">Link 1</a>
+                      <a href="#">Link 2</a>
+                      <a href="#">Link 3</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown">
+                  <div class="dropdown">
+                    <li type="button" class="dropbtn">Nascar</li>
+                    <div class="dropdown-content">
+                      <a href="#">Link 1</a>
+                      <a href="#">Link 2</a>
+                      <a href="#">Link 3</a>
+                    </div>
+                  </div>
+                </div>
+              </ul>
+              <Login />
             </div>
-            <li>Gt Racing</li>
-            <li>Indy Racing</li>
-            <li>Nascar</li>
-            <li>Nascar</li>
-          </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -67,7 +98,7 @@ li {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -93,6 +124,12 @@ li {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  background-color: #616261;
+  transition: 800ms;
+  color: white;
+}
+
+.navbar-info {
+  margin-top: 2em;
 }
 </style>
