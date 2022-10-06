@@ -1,10 +1,17 @@
 <template>
   <button
-    class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0"
+    class="sign-in-btn selectable my-2 my-lg-0"
     @click="login"
     v-if="!user.isAuthenticated"
   >
-    Login
+    Sign in
+  </button>
+  <button
+    class="sign-up-btn selectable my-2 my-lg-0"
+    @click="login"
+    v-if="!user.isAuthenticated"
+  >
+    Sign up
   </button>
 
   <div class="dropdown my-lg-0" v-else>
@@ -78,5 +85,34 @@ export default {
 }
 .hoverable {
   cursor: pointer;
+}
+
+.sign-in-btn {
+  display: inline-block;
+  padding: 0.46em 1.6em;
+  background-color: #e10600;
+  border: 0.1em solid #000000;
+  margin: 0 0.2em 0.2em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
+  text-align: center;
+  transition: all 0.15s;
+}
+
+.sign-in-btn:hover {
+  text-shadow: 0 0 2em rgba(255, 255, 255, 1);
+  color: #ffffff;
+  transition: 400ms;
+  border: 0.12em solid #000000;
+}
+
+.sign-up-btn {
+  padding: 0.3rem;
+  border-radius: 15%;
+  margin-right: 0.8rem;
 }
 </style>

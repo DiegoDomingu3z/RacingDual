@@ -187,4 +187,10 @@ export default {
 .menu-wrap .toggler {
   z-index: 3;
 }
+
+@media (min-width: 780px) {
+  .menu-wrap {
+    display: none;
+  }
+}
 </style>

@@ -1,53 +1,54 @@
 <template>
   <nav>
+    <div class="row gx-0 img">
+      <div class="col-md-4 mt-2"></div>
+      <div class="col-md-4 text-center mt-3"><h1>DualRacing</h1></div>
+      <div class="col-md-4 text-end mt-3"><Login /></div>
+    </div>
     <div class="row gx-0">
-      <div class="col-6"></div>
-      <div class="col-6">
-        <div class="row gx-0">
-          <div class="navbar-info">
-            <div class="">
-              <ul id="navbar" class="">
+      <div class="col-md-12">
+        <div class="navbar-info">
+          <div class="">
+            <ul id="navbar" class="">
+              <div class="dropdown">
+                <li type="button" class="dropbtn p-3 rounded">F1</li>
+                <div class="dropdown-content">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+                </div>
+              </div>
+              <div class="dropdown">
                 <div class="dropdown">
-                  <li type="button" class="dropbtn p-3 rounded">F1</li>
+                  <li type="button" class="dropbtn">Gt Racing</li>
                   <div class="dropdown-content">
                     <a href="#">Link 1</a>
                     <a href="#">Link 2</a>
                     <a href="#">Link 3</a>
                   </div>
                 </div>
+              </div>
+              <div class="dropdown">
                 <div class="dropdown">
-                  <div class="dropdown">
-                    <li type="button" class="dropbtn">Gt Racing</li>
-                    <div class="dropdown-content">
-                      <a href="#">Link 1</a>
-                      <a href="#">Link 2</a>
-                      <a href="#">Link 3</a>
-                    </div>
+                  <li type="button" class="dropbtn">Indy Racing</li>
+                  <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
                   </div>
                 </div>
+              </div>
+              <div class="dropdown">
                 <div class="dropdown">
-                  <div class="dropdown">
-                    <li type="button" class="dropbtn">Indy Racing</li>
-                    <div class="dropdown-content">
-                      <a href="#">Link 1</a>
-                      <a href="#">Link 2</a>
-                      <a href="#">Link 3</a>
-                    </div>
+                  <li type="button" class="dropbtn">Nascar</li>
+                  <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
                   </div>
                 </div>
-                <div class="dropdown">
-                  <div class="dropdown">
-                    <li type="button" class="dropbtn">Nascar</li>
-                    <div class="dropdown-content">
-                      <a href="#">Link 1</a>
-                      <a href="#">Link 2</a>
-                      <a href="#">Link 3</a>
-                    </div>
-                  </div>
-                </div>
-              </ul>
-              <Login />
-            </div>
+              </div>
+            </ul>
           </div>
         </div>
       </div>
@@ -130,6 +131,14 @@ li {
 }
 
 .navbar-info {
-  margin-top: 2em;
+  margin-top: 0.5em;
+}
+
+.img {
+  background-image: url("../assets/img/freestock_1664404.gif");
+  height: 10vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
 }
 </style>
