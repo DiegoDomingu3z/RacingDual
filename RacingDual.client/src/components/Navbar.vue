@@ -1,9 +1,9 @@
 <template>
   <nav>
     <div class="row gx-0">
-      <div class="col-6">hello</div>
+      <div class="col-6"></div>
       <div class="col-6">
-        <div class="row">
+        <div class="row gx-0">
           <div class="navbar-info">
             <div class="">
               <ul id="navbar" class="">
