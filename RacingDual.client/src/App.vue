@@ -31,4 +31,10 @@ export default {
     display: none;
   }
 }
+
+@media (min-width: 780px) {
+  .mobile-nav {
+    display: none;
+  }
+}
 </style>

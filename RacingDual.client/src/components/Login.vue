@@ -16,7 +16,7 @@
 
   <div class="dropdown my-lg-0" v-else>
     <div
-      class="dropdown-toggle selectable"
+      class="dropdown-toggle"
       data-bs-toggle="dropdown"
       aria-expanded="false"
       id="authDropdown"
@@ -26,7 +26,7 @@
           :src="account.picture || user.picture"
           alt="account photo"
           height="40"
-          class="rounded"
+          class="rounded account-img selectable"
         />
       </div>
       <!-- <span class="mx-3 text-success lighten-30">{{ account.name || user.name }}</span> -->
@@ -114,5 +114,9 @@ export default {
   padding: 0.3rem;
   border-radius: 15%;
   margin-right: 0.8rem;
+}
+
+.account-img {
+  margin-right: 1em;
 }
 </style>
