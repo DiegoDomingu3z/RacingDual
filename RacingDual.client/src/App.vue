@@ -26,13 +26,13 @@ export default {
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
-@media (max-width: 780px) {
+@media (max-width: 821px) {
   .desktop-nav {
     display: none;
   }
 }
 
-@media (min-width: 780px) {
+@media (min-width: 821px) {
   .mobile-nav {
     display: none;
   }

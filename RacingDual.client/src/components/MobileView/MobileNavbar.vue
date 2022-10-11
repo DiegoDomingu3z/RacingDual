@@ -188,7 +188,7 @@ export default {
   z-index: 3;
 }
 
-@media (min-width: 780px) {
+@media (min-width: 821px) {
   .menu-wrap {
     display: none;
   }

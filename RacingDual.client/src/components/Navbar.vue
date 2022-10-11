@@ -70,16 +70,12 @@
 import { computed, onMounted } from '@vue/runtime-core';
 import Pop from '../utils/Pop';
 import { AppState } from '../AppState';
+import { VueScrollFixedNavbar } from "vue-scroll-fixed-navbar";
 
 export default {
-  setup() {
-    onMounted(async () => {
-      let header = document.getElementById('header')
 
-      window.addEventListener('scroll', () => {
-        header.classList.toggle('sticky', window.scrollY > 0)
-      })
-    })
+  setup() {
+
     return {
 
     };
